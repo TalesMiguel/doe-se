@@ -22,5 +22,16 @@ class Acoes(models.Model):
     nome = models.CharField(max_length=256)
     tipo = models.CharField(max_length=32)
     endereco = models.CharField(max_length=256)
+    lat = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
+    lng = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
+
+    def to_dict_json(self):
+        return {
+            'nome': self.nome,
+            'tipo': self.tipo,
+            'endereco': self.endereco,
+            'lat': self.lat,
+            'lng': self.lng,
+        }
 
 

@@ -38,7 +38,8 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: ./frontend/
+      dockerfile: Dockerfile
       args:
         NUXT_PUBLIC_PATH: http://localhost/static/
     image: front-doese
