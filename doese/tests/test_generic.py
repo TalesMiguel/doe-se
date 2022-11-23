@@ -4,6 +4,7 @@ import pytest
 def project_name():
     return "Doe-se"
 
+
 def test_wrong_project_name(project_name):
         assert project_name != "Projeto genérico"
 
