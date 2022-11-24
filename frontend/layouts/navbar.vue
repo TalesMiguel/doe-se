@@ -9,7 +9,7 @@
       class="px-6"
     >
 
-      <v-btn v-on="on" text class="mr-4" @click="home">
+      <v-btn text class="mr-4" @click="home">
         <v-toolbar-title>
         <div style="font-size:25pt" class="mr-4 font-weight-bold">
           Doe-se
@@ -34,7 +34,7 @@
             Contato
           </v-btn>
 
-          <v-btn color="#d8d5d5" class="my-8 mx-6 font-weight-light" depressed @click="cadastrarInstituicao">
+          <v-btn color="#d8d5d5" class="my-8 mx-6 font-weight-light" depressed @click="loginInstituicao">
             Espaço para Instituições
           </v-btn>
 
@@ -102,13 +102,9 @@
     </v-app-bar>
 
     <v-footer
-      :absolute="!fixed"
       app
     >
-      <span> &copy; {{ new Date().getFullYear() }} </span><span
-        v-if="loggedUser"
-        class="pl-4"
-      ><v-icon>mdi-account</v-icon> {{ loggedUser.user.username }}</span>
+      <span> &copy; {{ new Date().getFullYear() }} </span>
     </v-footer>
 
     <Nuxt />
@@ -129,12 +125,12 @@ export default {
       })
     },
     entrar () {
-      this.$router.push('./UserLogin')
+      this.$router.push('./login-usuario')
     },
     quem () {
       this.home()
       window.scrollTo({
-        top: 700,
+        top: 840,
         left: 0,
         behavior: 'smooth'
       })
@@ -148,10 +144,10 @@ export default {
       })
     },
     cadastrarUsuario () {
-      this.$router.push('./CadastroUsuario')
+      this.$router.push('./cadastro-usuario')
     },
-    cadastrarInstituicao () {
-      this.$router.push('./CadastroInstituicao')
+    loginInstituicao () {
+      this.$router.push('./login-instituicao')
     }
   }
 }

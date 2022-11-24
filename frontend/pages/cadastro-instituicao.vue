@@ -167,7 +167,7 @@
                 </v-row>
                 <div align="right"><v-btn
                     :disabled="!valid"
-                    color="black"
+                    color="#d8d5d5"
                     class="mr-4"
                     @click="validate"
                 >Cadastrar</v-btn></div>
@@ -177,7 +177,7 @@
 </template>
 <script>
 export default {
-  name: 'CadastroInstituicao',
+  name: 'Cadastro-Instituicao',
   layout: 'navbar',
   data: () => ({
     valid: true,

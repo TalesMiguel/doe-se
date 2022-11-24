@@ -31,9 +31,19 @@ class Instituicoes(models.Model):
 
 class Acao(models.model):
     intistuicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
-    tipo = models.IntegerField
-    local = models.CharField(max_length=128)
+    tipo = models.CharField(max_length=32)
+    endereco = models.CharField(max_length=128)
     CEP_local = models.IntegerField
     data_inicio = models.DateTimeField
     data_termino = models.DateTimeField
     concluido = models.BooleanField
+    lat = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
+    lng = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
+
+    def to_dict_json(self):
+        return {
+            'tipo': self.tipo,
+            'endereco': self.endereco,
+            'lat': self.lat,
+            'lng': self.lng,
+        }

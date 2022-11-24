@@ -10,7 +10,7 @@
         <div class="center" align="center">
           <v-card
             elevation="0"
-            color="red"
+            color="#c6535f"
             outlined
             width="400"
           ><h2>Login</h2><div align="left">
@@ -25,7 +25,8 @@
            <v-btn
              elevation="0"
              large
-             color="#000"
+             color="#d8d5d5"
+             class="mr-2 mb-2"
            >Entrar</v-btn>
           </div>
           <div align="center">
@@ -54,10 +55,11 @@
 <script>
 
 export default {
-  name: 'LonginInstituicao',
+  name: 'Login-Instituicao',
+  layout: "navbar",
   methods: {
     cadastrar () {
-      this.$router.push('./CadastroInstituicao')
+      this.$router.push('./cadastro-instituicao')
     }
   }
 }
