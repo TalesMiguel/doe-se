@@ -36,9 +36,9 @@
                   Faça sua doação
               </h1> </v-card-title>
               <v-card-actions class="justify-center">
-                <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6">
+                <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6" @click="explorar">
                   <div style="font-size:13px;color:#f4f4f4">
-                    Doação Única
+                    Explorar
                   </div>
                 </v-btn>
               </v-card-actions>
@@ -59,6 +59,7 @@
             </v-card>
           </v-col>
         </v-row>
+
         <v-divider style="max-width: 92vw"> </v-divider>
 
         <v-row class="ma-10" style="height:75vh">
@@ -84,6 +85,7 @@
             </v-card>
           </v-col>
         </v-row>
+
         <v-divider style="max-width: 92vw"> </v-divider>
 
         <v-row class="ma-10" style="height: 80vh">
@@ -174,6 +176,9 @@ export default {
     },
     buscar () {
       this.$router.push('./mapa')
+    },
+    explorar () {
+      this.$router.push('./explorar')
     }
   }
 }

@@ -47,7 +47,7 @@
                 </v-col>
                 <v-col md=9 align="center" align-self="center">
                 <client-only>
-                    <l-map :zoom="zoom" :center="center" style="height:650px;width:1200px" ref="map">
+                    <l-map :zoom="zoom" :center="center" style="height:650px;width:1200px;z-index: 0" ref="map">
                         <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
                         <l-geo-json :geojson="markers" :options="options"></l-geo-json>
                         <v-locate-control/>
