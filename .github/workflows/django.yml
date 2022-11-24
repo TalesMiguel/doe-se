@@ -30,7 +30,7 @@ jobs:
 
     # Run pytest tests
     - name: Run Tests - Pytest
-      working-directory: ./doese/tests
+      working-directory: ./backend/doese/tests
       run: |
         pytest -vv
 
