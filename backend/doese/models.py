@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class User(models.model):
+class User(models.Model):
     nome = models.CharField(max_length=50)
     CEP = models.IntegerField
     data_de_nascimento = models.DateField
     def __str__(self):
         return self.nome
 
-class Historico(models.model):
+class Historico(models.Model):
     tipo = models.IntegerField
     local = models.CharField(max_length=128)
     CEP_local = models.IntegerField
@@ -29,8 +29,8 @@ class Instituicoes(models.Model):
     def __str__(self):
         return self.nome
 
-class Acao(models.model):
-    intistuicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
+class Acoes(models.Model):
+    instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
     tipo = models.CharField(max_length=32)
     endereco = models.CharField(max_length=128)
     CEP_local = models.IntegerField
