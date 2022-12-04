@@ -7,6 +7,9 @@
     <v-col>
       <v-card color="#c3c3c3" align="center" width="72vw">
         <v-container class="mx-5 my-7" fluid>
+          <v-text-field required  
+              v-model="enderecoAcao" label="Endereço" style="width:60vw" outlined filled background-color="#f6f6f6">
+          </v-text-field>
           <v-row class="mb-3">
             <v-icon color="green" size="60">mdi-food-apple</v-icon>
             <v-checkbox v-model="tipoAcao" label="Comida" value="comida"></v-checkbox>
@@ -36,11 +39,32 @@ export default {
   },
   data () {
     return {
-      tipoAcao: ['']
+      tipoAcao: [],
+      enderecoAcao: '',
+      textoErro: "Aldo deu errado:",
+      pronto: false,
+      falhou: false
     }
   },
   methods: {
     salvar_acao () {
+      if(this.tipoAcao.length && this.enderecoAcao.length){
+        this.loading = true
+        const formAcao = new FormData()
+        formAcao.append('nome', this.nome)
+        formAcao.append('tipo', this.tipo)
+        formAcao.append('endereco', this.endereco)
+        this.$axios.post('add-acao/', formAcao)
+        .then(async (mens) => { this.$refs.form.reset(); this.pronto = true; 
+            await new Promise(r => setTimeout(r, 2000)); this.pronto = false })
+        .catch(async (err) => { this.$refs.form.reset(); this.falhou = true;
+            await new Promise(r => setTimeout(r, 2000)); this.falhou = false }) 
+      } else{
+        if(!this.tipoAcao.length) this.textoErro += "\ntipo de ação nao escolhida"
+        if(!this.enderecoAcao.length) this.textoErro += "\nEndereço não preenchido"
+          window.alert(this.textoErro)
+            this.textoErro = "Aldo deu errado:"
+      }
     }
   }
 }
