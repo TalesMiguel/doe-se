@@ -43,22 +43,26 @@ export default {
       enderecoAcao: '',
       textoErro: "Aldo deu errado:",
       pronto: false,
-      falhou: false
+      falhou: false,
     }
   },
   methods: {
     salvar_acao () {
       if(this.tipoAcao.length && this.enderecoAcao.length){
-        this.loading = true
         const formAcao = new FormData()
-        formAcao.append('nome', this.nome)
-        formAcao.append('tipo', this.tipo)
-        formAcao.append('endereco', this.endereco)
+        formAcao.append('endereco', this.enderecoAcao)
+        this.tipoAcao.forEach((item) => formAcao.append('tipo', '{'+item+'}'))
+        //let currentDate = new Date()
+        //let data = currentDate.getTime()/1000
+        //formAcao.append('timestamp', data)
+        formAcao.append('concluido', false)
         this.$axios.post('add-acao/', formAcao)
-        .then(async (mens) => { this.$refs.form.reset(); this.pronto = true; 
-            await new Promise(r => setTimeout(r, 2000)); this.pronto = false })
-        .catch(async (err) => { this.$refs.form.reset(); this.falhou = true;
-            await new Promise(r => setTimeout(r, 2000)); this.falhou = false }) 
+        .then(async (mens) => {
+            console.log(mens)
+             })
+        .catch(async (err) => { 
+            console.log(err)
+             }) 
       } else{
         if(!this.tipoAcao.length) this.textoErro += "\ntipo de ação nao escolhida"
         if(!this.enderecoAcao.length) this.textoErro += "\nEndereço não preenchido"
