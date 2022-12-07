@@ -11,4 +11,4 @@ admin.site.register(Instituicoes, InstituicaoAdmin)
 
 admin.site.register(User)
 
-admin.site.register(Acoes, AcoesAdmin)
+admin.site.register(Acoes)

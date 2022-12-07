@@ -55,7 +55,7 @@ export default {
         //let currentDate = new Date()
         //let data = currentDate.getTime()/1000
         //formAcao.append('timestamp', data)
-        formAcao.append('concluido', false)
+        formAcao.append('concluido', "false")
         this.$axios.post('add-acao/', formAcao)
         .then(async (mens) => {
             console.log(mens)

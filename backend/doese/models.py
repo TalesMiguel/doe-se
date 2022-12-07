@@ -33,8 +33,8 @@ class Acoes(models.Model):
     #instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
     tipo = ArrayField(models.CharField(max_length=32), size = 3)
     endereco = models.CharField(max_length=128)
-    #data_inicio = models.DateTimeField
-    #data_termino = models.DateTimeField
+    dataInicio = models.DateField()
+    #dataTermino = models.DateTimeField()
     concluido = models.BooleanField(default=False)
     lat = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
     lng = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
