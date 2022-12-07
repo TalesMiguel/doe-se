@@ -1,25 +1,30 @@
 <template>
     <v-main>
         <v-container fluid style="height: 89vh">
-            <v-row class="mt-16" style="max-height: 20vh">
+            <v-row class="mt-10" style="max-height: 20vh">
                 <v-col md="3"></v-col>
                 <v-col md="9" align="center" align-self="end" class="mb-2">
-                    <h2> Projetos sociais próximos a você! </h2>
+                    <h2 class="ml-16"> Projetos sociais próximos a você! </h2>
                 </v-col>
             </v-row>
             <v-row align="center" style="height: 40vh">
                 <v-col md=3 align="right" align-self="center">
-                    <v-card flat style="width:20vw;height:60vh" color="#d8d5d5">
+                    <v-card flat style="width:25vw;height:60vh" color="#d8d5d5" class="ml-16">
                         <v-card-title class="justify-center"> <p class="font-size: 32px mt-8 mb-4">
                             Pesquisar
                         </p> </v-card-title>
                         <v-card-actions class="justify-center">
-                                <v-autocomplete
-                                flat
-                                label="Digite seu endereço"
-                                filled
-                                class="mx-8"
-                                ></v-autocomplete>
+                                <v-form ref="form" v-on:submit.prevent="busca_local">
+                                    <v-row>
+                                        <v-col class="ml-3"> 
+                                            <v-text-field v-model="buscamapa" flat label="Digite seu endereço" filled style="width: 18vw">
+                                            </v-text-field>
+                                        </v-col>
+                                        <v-col class="mt-3">
+                                            <v-btn @click='busca_local' icon> <v-icon>mdi-magnify</v-icon> </v-btn>
+                                        </v-col>
+                                    </v-row>
+                                </v-form>
                         </v-card-actions>
                         <v-row class="justify-center pa-0">
                             <v-card-title>
@@ -45,10 +50,11 @@
                         </v-card-actions>
                     </v-card>
                 </v-col>
-                <v-col md=9 align="center" align-self="center">
+                <v-col md=9 align="right" align-self="center">
                 <client-only>
-                    <l-map :zoom="zoom" :center="center" style="height:650px;width:1200px;z-index: 0" ref="map">
+                    <l-map :zoom="zoom" :center="center" style="height:700px;width:1250px;z-index: 0" ref="map" class="mr-10">
                         <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+                        <l-marker :lat-lng="markerLatLng"></l-marker>
                         <l-geo-json :geojson="markers" :options="options"></l-geo-json>
                         <v-locate-control/>
                         <v-geo :options="geosearchOptions"></v-geo>
@@ -108,6 +114,19 @@ export default {
             this.comida = false
             this.trabalho = false
             this.vazio = true
+        },
+
+        busca_local()
+        {
+           this.geosearchOptions.provider.search({ query: this.buscamapa })
+           .then((result) => {
+                this.center = [ result[0].y, result[0].x ]
+                this.markerLatLng = [ result[0].y, result[0].x ]
+                this.$refs.form.reset()
+            })
+            .catch((err) => {
+                console.log(err)
+            });
         }
     },
     data() {
@@ -120,9 +139,10 @@ export default {
             comida: false,
             trabalho: false,
             vazio: true,
+            buscamapa: null,
+            markerLatLng: [0, 0],
             geosearchOptions: { 
                 provider: this.$osm,
-                style: 'bar',
                 showMarker: true, 
                 showPopup: false, 
                 autoClose: true,
