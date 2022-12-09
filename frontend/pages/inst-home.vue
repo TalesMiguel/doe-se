@@ -4,9 +4,9 @@
       <v-img class="text aling-end" :src="image3" max-height="15vh">
         <h1 align="left" style="color:#F08080">{{instname}}</h1>
         <div align="center">
-          <v-toolbar color="#d3d3d3" flat max-width="1000" min-width="500">
+          <v-toolbar color="#d3d3d3" flat width="60vw" height="60vh">
             <v-tabs
-              background-color="#d3d3d3" max-height="30"
+              background-color="#d3d3d3"
               v-model="opcoes_inst" fixed-tabs slider-color="#FF5757"
             >
               <v-tab v-for="opcao in opcoes" :key="opcao" style="color: #000">

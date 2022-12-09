@@ -1,21 +1,21 @@
-from django.db import models
 from django.contrib.auth.models import User
-
+from django.contrib.postgres.fields import ArrayField
+from django.db import models
 # Create your models here.
 
-class User(models.model):
+class User(models.Model):
     nome = models.CharField(max_length=50)
     CEP = models.IntegerField
     data_de_nascimento = models.DateField
     def __str__(self):
         return self.nome
 
-class Historico(models.model):
+class Historico(models.Model):
     tipo = models.IntegerField
     local = models.CharField(max_length=128)
     CEP_local = models.IntegerField
-    data_inicio = models.DateField
-    data_termino = models.DateField
+    #data_inicio = models.DateField
+    #sdata_termino = models.DateField
     valor = models.IntegerField
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -29,20 +29,19 @@ class Instituicoes(models.Model):
     def __str__(self):
         return self.nome
 
-class Acao(models.model):
-    intistuicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
-    tipo = models.CharField(max_length=32)
+class Acoes(models.Model):
+    #instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
+    tipo = ArrayField(models.CharField(max_length=32), size = 3)
     endereco = models.CharField(max_length=128)
-    CEP_local = models.IntegerField
-    data_inicio = models.DateTimeField
-    data_termino = models.DateTimeField
-    concluido = models.BooleanField
+    dataInicio = models.DateField()
+    #dataTermino = models.DateTimeField()
+    concluido = models.BooleanField(default=False)
     lat = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
     lng = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
 
     def to_dict_json(self):
         return {
-            'tipo': self.tipo,
+            'tipo': self.tipo[0],
             'endereco': self.endereco,
             'lat': self.lat,
             'lng': self.lng,
