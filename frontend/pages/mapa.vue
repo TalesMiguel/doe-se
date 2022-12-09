@@ -71,6 +71,7 @@
 export default {
     name: 'MapaPage',
     layout: 'navbar',
+    props: ['buscaindex'],
     methods:
     {
         removeItem(value) 
@@ -123,6 +124,7 @@ export default {
                 this.center = [ result[0].y, result[0].x ]
                 this.markerLatLng = [ result[0].y, result[0].x ]
                 this.$refs.form.reset()
+                console.log(this.buscaindex)
             })
             .catch((err) => {
                 console.log(err)

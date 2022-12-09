@@ -7,12 +7,10 @@
             <div style="height: 8vh">
             <p style="font-size: 28px"> Encontre projetos sociais próximos a você!</p>
             </div>
-            <v-autocomplete
-              flat
-              label="Digite seu endereço"
-              filled
-              class="d-flex justify-end mb-6"
-            ></v-autocomplete>
+            <v-form ref="form" v-on:submit.prevent="busca_local">
+              <v-text-field v-model="buscamapa" flat label="Digite seu endereço" filled class="d-flex justify-end mb-6">
+              </v-text-field>
+          </v-form>
           </v-col>
           <v-col align-self="center" class="mb-6">
             <v-btn rounded class="mx-6 mt-13" style="min-width:14vh" color="#c6535f" @click="buscar">
@@ -179,6 +177,16 @@ export default {
     },
     explorar () {
       this.$router.push('./explorar')
+    },
+    busca_local ()
+    {
+      <mapa buscalanding={this.buscamapa}/>
+      this.buscar()
+    }
+  },
+  data() {
+    return {
+      buscamapa: ""
     }
   }
 }
