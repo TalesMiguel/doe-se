@@ -1,31 +1,25 @@
 <template>
     <v-main>
       <v-container fluid style="height: 250vh" class="mx-16 my-12">
-        <v-row justify="left" class="ml-14 mt-8">
+        <v-row class="ml-14 mt-8">
           <v-col md="1"> </v-col>
           <v-col md="7" align="center">
             <div style="height: 8vh">
             <p style="font-size: 28px"> Encontre projetos sociais próximos a você!</p>
             </div>
             <v-autocomplete
-              v-model="select"
-              :loading="loading"
-              :items="items"
-              :search-input.sync="search"
-              cache-items
               flat
-              hide-no-data
-              hide-details
               label="Digite seu endereço"
               filled
               class="d-flex justify-end mb-6"
             ></v-autocomplete>
           </v-col>
-          <v-col>
-            <v-btn rounded class="mx-6 my-15" style="min-width:14vh" color="#c6535f">
-              <div style="color:#f4f4f4;font-size:13px"> Buscar </div> </v-btn> </v-col>
+          <v-col align-self="center" class="mb-6">
+            <v-btn rounded class="mx-6 mt-13" style="min-width:14vh" color="#c6535f" @click="buscar">
+              <div style="color:#f4f4f4;font-size:13px"> Buscar </div> </v-btn> 
+          </v-col>
         </v-row>
-        <v-row justify="left" class="ml-4 mt-8" style="height: 62vh">
+        <v-row class="ml-4 mt-8" style="height: 62vh">
           <v-col md="6" align="center">
             <h1 style="font-size: 56px"> Quem você quer <br>
             ajudar hoje? </h1>
@@ -42,9 +36,9 @@
                   Faça sua doação
               </h1> </v-card-title>
               <v-card-actions class="justify-center">
-                <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6">
+                <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6" @click="explorar">
                   <div style="font-size:13px;color:#f4f4f4">
-                    Doação Única
+                    Explorar
                   </div>
                 </v-btn>
               </v-card-actions>
@@ -65,6 +59,7 @@
             </v-card>
           </v-col>
         </v-row>
+
         <v-divider style="max-width: 92vw"> </v-divider>
 
         <v-row class="ma-10" style="height:75vh">
@@ -90,10 +85,11 @@
             </v-card>
           </v-col>
         </v-row>
+
         <v-divider style="max-width: 92vw"> </v-divider>
 
-        <v-row justify="left" class="mx-10" style="height: 80vh">
-          <v-col md="5" align="center">
+        <v-row class="ma-10" style="height: 80vh">
+          <v-col md="5" align="center" class="mt-10">
             <h3 style="font-size: 50px" align="center"> Fale conosco! </h3>
             <p style="font-size: 30px" align="center" class="font-weight-light mt-4">
               Tem alguma pergunta ou gostaria <br>
@@ -110,7 +106,6 @@
                       sm="6"
                     >
                       <v-text-field maxlength='100'
-                        v-model="first"
                         label="Nome"
                         outlined
                         solo
@@ -123,7 +118,6 @@
                       sm="6"
                     >
                       <v-text-field maxlength='100'
-                        v-model="first"
                         label="E-mail"
                         outlined
                         solo
@@ -141,7 +135,6 @@
                       sm="12"
                     >
                       <v-text-field maxlength='60'
-                        v-model="first"
                         label="Assunto"
                         outlined
                         solo
@@ -176,10 +169,16 @@ export default {
   layout: 'navbar',
   methods: {
     entrar () {
-      this.$router.push('./UserLogin')
+      this.$router.push('./login-usuario')
     },
     cadastrarUsuario () {
-      this.$router.push('./CadastroUsuario')
+      this.$router.push('./cadastro-usuario')
+    },
+    buscar () {
+      this.$router.push('./mapa')
+    },
+    explorar () {
+      this.$router.push('./explorar')
     }
   }
 }

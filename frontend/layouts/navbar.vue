@@ -9,7 +9,7 @@
       class="px-6"
     >
 
-      <v-btn v-on="on" text class="mr-4" @click="home">
+      <v-btn text class="mr-4" @click="home">
         <v-toolbar-title>
         <div style="font-size:25pt" class="mr-4 font-weight-bold">
           Doe-se
@@ -34,11 +34,11 @@
             Contato
           </v-btn>
 
-          <v-btn color="#d8d5d5" class="my-8 mx-6 font-weight-light" depressed @click="cadastrarInstituicao">
+          <v-btn color="#d8d5d5" class="my-8 mx-6 font-weight-light" depressed @click="loginInstituicao">
             Espaço para Instituições
           </v-btn>
 
-          <v-btn rounded color="#c6535f" class="my-8 mx-6" style="min-width:14vh">
+          <v-btn rounded color="#c6535f" class="my-8 mx-6" style="min-width:14vh" @click="dialog = true">
             <v-toolbar-title>
               <div style="color:#f4f4f4;font-size:9pt">
                 Quero Doar
@@ -46,69 +46,42 @@
             </v-toolbar-title>
           </v-btn>
 
-          <v-menu
-            bottom
-            min-width="100px"
-            offset-y
-          >
-
-            <template v-slot:activator="{ on }">
-              <v-btn
-                icon
-                x-large
-                v-on="on"
-                class="my-6 ml-6"
-              >
-                <v-avatar
-                  color="#d8d5d5"
-                  size="56"
-                >
-                  <v-icon> mdi-account </v-icon>
-                </v-avatar>
-              </v-btn>
-            </template>
-
-            <v-card
-              color="#e9eaeb"
-            >
-              <v-list-item-content class="justify-center">
-                <div class="text-center">
-                  <v-btn
-                    text
-                    class="font-weight-light"
-                    @click="entrar"
-                  >
-                    Entrar
-                  </v-btn>
-
-                  <v-divider class="my-3"></v-divider>
-
-                  <v-btn
-                    text
-                    class="font-weight-light" @click="cadastrarUsuario"
-                  >
-                    Cadastre-se
-                  </v-btn>
-                </div>
-              </v-list-item-content>
-            </v-card>
-        </v-menu>
-
         </v-row>
       </v-container>
 
-      <v-spacer />
-
     </v-app-bar>
 
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span> &copy; {{ new Date().getFullYear() }} </span><span
-        v-if="loggedUser"
-        class="pl-4"
-      ><v-icon>mdi-account</v-icon> {{ loggedUser.user.username }}</span>
+    <v-dialog v-model="dialog" width="25vw">
+      <v-card flat color="#d8d5d5" class="mt-4">
+        <v-card-title class="justify-center"> <h1 class="font-size: 48px my-8">
+            Faça sua doação
+        </h1> </v-card-title>
+        <v-card-actions class="justify-center">
+          <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6" @click="explorar">
+            <div style="font-size:13px;color:#f4f4f4">
+              Explorar
+            </div>
+          </v-btn>
+        </v-card-actions>
+        <v-card-actions class="justify-center">
+          <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6" @click="entrar">
+            <div style="font-size:13px;color:#f4f4f4">
+              Entrar
+            </div>
+          </v-btn>
+        </v-card-actions>
+        <v-card-actions class="justify-center">
+            <v-btn color="#c6535f" style="min-width: 16vh" class="mb-10" @click="cadastrarUsuario">
+            <div style="font-size:13px;color:#f4f4f4">
+              Cadastre - se
+            </div>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-footer app>
+      <span> &copy; {{ new Date().getFullYear() }} </span>
     </v-footer>
 
     <Nuxt />
@@ -119,6 +92,11 @@
 <script>
 export default {
   name: 'NavbarLayout',
+  data() {
+    return{
+      dialog: false
+    }
+  },
   methods: {
     home () {
       this.$router.push('./')
@@ -129,12 +107,13 @@ export default {
       })
     },
     entrar () {
-      this.$router.push('./UserLogin')
+      this.dialog = false
+      this.$router.push('./login-usuario')
     },
     quem () {
       this.home()
       window.scrollTo({
-        top: 700,
+        top: 840,
         left: 0,
         behavior: 'smooth'
       })
@@ -148,10 +127,15 @@ export default {
       })
     },
     cadastrarUsuario () {
-      this.$router.push('./CadastroUsuario')
+      this.dialog = false
+      this.$router.push('./cadastro-usuario')
     },
-    cadastrarInstituicao () {
-      this.$router.push('./CadastroInstituicao')
+    loginInstituicao () {
+      this.$router.push('./login-instituicao')
+    },
+    explorar () {
+      this.dialog = false
+      this.$router.push('./explorar')
     }
   }
 }

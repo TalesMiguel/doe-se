@@ -38,6 +38,7 @@
               text
               color="#f4f4f4"
               class="mb-2"
+              @click="cadastrar"
             >É novo, Cadastre-se aqui</v-btn>
           </div>
         </v-card>
@@ -48,8 +49,13 @@
 
 <script>
 export default {
-  name: 'LonginUsuario',
-  layout: 'navbar'
+  name: 'Login-Usuario',
+  layout: 'navbar',
+  methods: {
+    cadastrar () {
+      this.$router.push('./cadastro-usuario')
+    }
+  }
 }
 </script>
 

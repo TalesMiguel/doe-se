@@ -21,4 +21,5 @@ six==1.16.0
 sqlparse==0.4.2
 tomli==2.0.1
 tzdata==2022.1
+geocoder==1.38.1
 uWSGI==2.0.20

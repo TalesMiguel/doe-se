@@ -67,7 +67,7 @@
               ></v-text-field>
               <div align="right"><v-btn
                 :disabled="!valid"
-                color="black"
+                color="#d8d5d5"
                 class="mr-4"
                 @click="validate"
               >
@@ -83,7 +83,7 @@
 <script>
 
 export default {
-  name: 'CadastroUsuario',
+  name: 'Cadastro-Usuario',
   layout: 'navbar',
   data: () => ({
     valid: true,
