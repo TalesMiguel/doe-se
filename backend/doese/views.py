@@ -23,3 +23,9 @@ def add_acao(request):
     else:
         return HttpResponse("falhou")
 
+def add_inst(request): #ai e com vc Felipe
+    if request.method == "POST":
+        
+    else:
+        return HttpResponse(request)
+

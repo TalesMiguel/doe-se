@@ -1,11 +1,12 @@
 <template>
-    <div class="center" align="center">
+  <v-main>
+    <v-container class="my-6" align="center" fluid>
         <v-card
             elevation="10"
             color="#F6E2E2"
             outlined
-            width="1400"
-            height="650"
+            width="80bw"
+            height="75vh"
         >
             <v-form
                 v-model="valid"
@@ -94,15 +95,6 @@
                 </v-row>
                 <v-row>
                     <v-col>
-                    <v-select
-                        v-model="subTipo"
-                        :items="subTipos"
-                        :rules="[v => !!v || 'Selecione o subtipo']"
-                        label="Subtip"
-                        required
-                        ></v-select>
-                    </v-col>
-                    <v-col>
                         <v-text-field
                             v-model="nomeInst"
                             :rules="nomeInstRules"
@@ -169,11 +161,12 @@
                     :disabled="!valid"
                     color="#d8d5d5"
                     class="mr-4"
-                    @click="validate"
+                    @click="cadastrarinst"
                 >Cadastrar</v-btn></div>
             </v-form>
         </v-card>
-    </div>
+    </v-container>
+  </v-main>
 </template>
 <script>
 export default {
@@ -226,15 +219,14 @@ export default {
       v => !!v || 'CEP obrigatório',
       v => (!/[^0-9]/.test(v) && v.length === 8) || 'CEP invalido'
     ],
-    subTipo: 'n/a',
-    subTipos: [
-      'n/a'
-    ],
     nomeInst: '',
     nomeInstRules: [
       v => !!v || 'Nome obirgatório'
     ],
     nomeFantasia: '',
+    nomeFantasiaRules: [
+      v => !!v || 'Nome obirgatório'
+    ],
     telefoneRep: '',
     telefoneRepRules: [
       v => !!v || 'Telefone obrigatório',
@@ -259,13 +251,44 @@ export default {
     confirmaInstRules: [
       v => !!v || 'senha obrigatória',
       v => v.length >= 8 || 'Menos de 8 caracteres'
-      // v => v === this.senhaInst || 'Senhas não batem'
+      //v => v === this.senhaInst || 'Senhas não batem'
     ]
   }),
   methods: {
-    validate () {
-      if (this.$refs.formInst.validate()) {
-        this.$router.push('./UserLogin')
+    formBuilder () {
+
+        const newForm = new FormData()
+
+        newForm.append('cnpj', this.cnpj)
+        newForm.append('nomeRepresentante', this.nomeRepresentante)
+        newForm.append('tipo', this.tipeInst)
+        newForm.append('rua', this.rua)
+        newForm.append('numero', this.numero)
+        newForm.append('bairro', this.bairro)
+        newForm.append('cidade', this.cidade)
+        newForm.append('uf', this.uf)
+        newForm.append('cep', this.cep)
+        newForm.append('nomeInst', this.nomeInst)
+        newForm.append('nomeFantasia', this.nomeFantasia)
+        newForm.append('telefone', this.telefoneRep)
+        newForm.append('emailInst', this.emailInst)
+        newForm.append('emailRep', this.emailRep)
+        newForm.append('senhaInst', this.senhaIsnt)
+
+        return newForm
+    },
+    cadastrarinst () {
+      if (this.$refs.formInst.validate() && this.senhaInst == this.confirmaInst) {
+        const formDeCadastroInst = this.formBuilder ()
+
+
+        this.$axios.post('add-inst/', formDeCadastroInst)
+
+        this.$router.push('login-instituicao')
+      } else if(this.senhaInst == this.confirmaInst){
+          window.alert("senhas diferentes")
+      } else {
+          window.alert("algo deu errado")
       }
     }
   }
