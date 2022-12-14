@@ -15,9 +15,9 @@
             width="400"
           ><h2>Login</h2><div align="left">
             <v-container>
-              <v-text-field outlined filled label="E-mail">
+              <v-text-field required outlined filled label="E-mail">
               </v-text-field>
-              <v-text-field outlined filled label="Senha" type="password">
+              <v-text-field required outlined filled label="Senha" type="password">
               </v-text-field>
             </v-container>
           </div>
@@ -57,9 +57,23 @@
 export default {
   name: 'Login-Instituicao',
   layout: "navbar",
+  data: () => ({
+    nome: '',
+    senha: ''
+  })
   methods: {
     cadastrar () {
       this.$router.push('./cadastro-instituicao')
+    },
+    login-inst () {
+
+      const Form = new FormData()
+
+      Form.append('username', this.nome)
+      Form.append('senha', this.senha)
+
+      this.$axious.post('login-inst/', Form)
+
     }
   }
 }

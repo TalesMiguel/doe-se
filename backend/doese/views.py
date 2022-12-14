@@ -29,3 +29,6 @@ def add_inst(request): #ai e com vc Felipe
     else:
         return HttpResponse(request)
 
+def login_user(request): #vc denovo Felipe
+
+def login_inst(request): #vc denovo Felipe
