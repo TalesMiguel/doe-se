@@ -19,7 +19,7 @@
           <v-card-text class="justify-center"><h2 style="color:#f4f4f4">Login</h2></v-card-text>
           <div align="left">
             <v-container>
-              <v-text-field required solo filled outlined flat label="E-mail">
+              <v-text-field required solo filled outlined flat label="E-mail" v-model="email">
               </v-text-field>
               <v-text-field required solo filled outlined flat label="Senha" type="password">
               </v-text-field>
@@ -52,7 +52,7 @@ export default {
   name: 'Login-Usuario',
   layout: 'navbar',
   data : () => ({
-    nome: '',
+    email: '',
     senha: ''
   })
   methods: {
@@ -63,7 +63,8 @@ export default {
 
       const Form = new FormData()
 
-      Form.append('username', this.nome)
+        window.alert(this.email)
+      Form.append('email', this.email)
       Form.append('senha', this.senha)
 
       this.$axious.post('login-user/', Form)
