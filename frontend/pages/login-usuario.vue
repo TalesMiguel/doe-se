@@ -54,7 +54,7 @@ export default {
   data : () => ({
     email: '',
     senha: ''
-  })
+  }),
   methods: {
     cadastrar () {
       this.$router.push('./cadastro-usuario')

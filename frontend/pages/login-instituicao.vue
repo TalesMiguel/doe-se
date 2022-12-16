@@ -60,12 +60,12 @@ export default {
   data: () => ({
     nome: '',
     senha: ''
-  })
+  }),
   methods: {
     cadastrar () {
       this.$router.push('./cadastro-instituicao')
     },
-    login-inst () {
+    login_inst () {
 
       const Form = new FormData()
 
