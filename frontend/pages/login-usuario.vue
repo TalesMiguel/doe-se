@@ -21,7 +21,7 @@
             <v-container>
               <v-text-field required solo filled outlined flat label="E-mail" v-model="email">
               </v-text-field>
-              <v-text-field required solo filled outlined flat label="Senha" type="password">
+              <v-text-field required solo filled outlined flat label="Senha" type="password" v-model="senha">
               </v-text-field>
             </v-container>
           </div>
@@ -63,11 +63,10 @@ export default {
 
       const Form = new FormData()
 
-        window.alert(this.email)
       Form.append('email', this.email)
       Form.append('senha', this.senha)
 
-      this.$axious.post('login-user/', Form)
+      this.$axios.post('login-user/', Form)
 
     }
   }
