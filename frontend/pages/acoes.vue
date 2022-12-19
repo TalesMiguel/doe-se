@@ -69,7 +69,6 @@ export default {
   methods: {
         enviar() {
             if(this.$refs.form.validate()){ 
-                this.loading = true
                 const formAcao = new FormData()
                 formAcao.append('nome', this.nome)
                 formAcao.append('tipo', this.tipo)
@@ -83,7 +82,6 @@ export default {
         },
 
         get() {
-            this.loading = true
             this.$axios.get('get-acao/')
                 .then(async (mens) => { this.acoes = (mens.data.todos); })
                 .catch(async (err) => { console.log("Erro " + err)} )

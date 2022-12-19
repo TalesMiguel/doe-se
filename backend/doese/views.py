@@ -4,14 +4,25 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
 from .models import Acoes
-import geocoder
+from .models import User
+from django.contrib.auth import login
+
+@csrf_exempt
+def login_user(request):
+    if request.method == "POST":
+        #user = User(nome=request.POST['nome'], senha=request.POST['senha'])
+        if User is not None:
+            #login(request, user)
+            return 
+        else:
+            return HttpResponse("Usuário não encontrado")
+
 
 @csrf_exempt
 def add_acao(request):
     if request.method == "POST":
-        g = geocoder.osm(request.POST['endereco'])
-        l1 = g.latlng[0]
-        l2 = g.latlng[1]
+        l1 = -42
+        l2 = 23
         acao = Acoes(tipo=request.POST['tipo'], endereco=request.POST['endereco'], lat=l1, lng=l2)
         acao.save()
         res = acao.to_dict_json()

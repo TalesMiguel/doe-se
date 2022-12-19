@@ -7,8 +7,11 @@ class InstituicaoAdmin(admin.ModelAdmin):
 class AcoesAdmin(admin.ModelAdmin):
     list_display = ('tipo', 'endereco')
 
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'senha')
+
 admin.site.register(Instituicoes, InstituicaoAdmin)
 
-admin.site.register(User)
+admin.site.register(User, UserAdmin)
 
 admin.site.register(Acoes, AcoesAdmin)

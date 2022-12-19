@@ -5,10 +5,14 @@ from django.contrib.auth.models import User
 
 class User(models.Model):
     nome = models.CharField(max_length=50)
-    CEP = models.IntegerField
-    data_de_nascimento = models.DateField
-    def __str__(self):
-        return self.nome
+    #endereco = models.CharField(max_length=50)
+    #data_de_nascimento = models.DateField()
+    senha = models.CharField(max_length=50)
+    def self(self):
+        return {
+            'nome': self.nome,
+            'senha': self.senha,
+        }
 
 class Historico(models.Model):
     tipo = models.IntegerField

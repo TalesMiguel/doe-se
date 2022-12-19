@@ -31,6 +31,7 @@
               large
               color="#d8d5d5"
               class="mb-4 mr-6 font-weight-light"
+              @click="entrar"
             >Entrar</v-btn>
           </div>
           <div align="center">
@@ -54,6 +55,11 @@ export default {
   methods: {
     cadastrar () {
       this.$router.push('./cadastro-usuario')
+    },
+    entrar() {
+      if(this.$refs.form.validate()){ 
+        
+      }
     }
   }
 }

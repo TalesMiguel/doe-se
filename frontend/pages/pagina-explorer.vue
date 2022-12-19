@@ -3,17 +3,13 @@
     <v-container fluid>
       <v-app-bar color="pink">
         <v-toolbar dense width="10">
-          <v-text-field hide-details single-line clearable>
-          </v-text-field>
-              <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
+          <input placeholder="Pesquisar" v-model="search" type="text" class="form-control" size="105"/>
         </v-toolbar>
         <v-spacer></v-spacer>
       </v-app-bar>
       <v-list>
         <v-list-item-group>
-            <template v-for="(item, index) in items">
+            <div v-for="item in filteredItem">
               <v-list-item style="width: 100vw;" v-if="!active" @click="inst_home">
                 <v-list-item-avatar>
                   <v-icon size="50" color="#c6535f" v-if="item.temImagem">mdi-account-circle
@@ -26,7 +22,7 @@
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
-            </template>
+            </div>
           </v-list-item-group>
         </v-list>
     </v-container>
@@ -38,66 +34,64 @@
 export default {
   name: 'pagina-explorer',
   layout: 'navbar',
-  data: () => ({
-    selected: [2],
-    items: [
-        {
-          temImagem: true,
-          tipo: 'Tipo de instituição',
-          Instituicao: 'Instituição zzzz-zzzz',
-        },
-        {
-          temImagem: true,
-          tipo: 'Tipo de instituição',
-          Instituicao: 'Instituição zzzz-zzzz',
-        },
-        {
-          temImagem: true,
-          tipo: 'Tipo de instituição',
-          Instituicao: 'Instituição zzzz-zzzz',
-        },
-        {
-          temImagem: true,
-          tipo: 'Tipo de instituição',
-          Instituicao: 'Instituição zzzz-zzzz',
-        },
-        {
-          temImagem: true,
-          tipo: 'Tipo de instituição',
-          Instituicao: 'Instituição zzzz-zzzz',
-        },
-        {
-          temImagem: true,
-          tipo: 'Tipo de instituição',
-          Instituicao: 'Instituição zzzz-zzzz',
-        },
-        {
-          temImagem: true,
-          tipo: 'Tipo de instituição',
-          Instituicao: 'Instituição zzzz-zzzz',
-        },
-        {
-          temImagem: true,
-          tipo: 'Tipo de instituição',
-          Instituicao: 'Instituição zzzz-zzzz',
-        },
-    ],
-  }),
+  data: function() {
+    return{
+      items: [
+          {
+            temImagem: true,
+            tipo: 'Tipo de instituição',
+            Instituicao: 'Instituição de Animais',
+          },
+          {
+            temImagem: true,
+            tipo: 'Tipo de instituição',
+            Instituicao: 'Instituição de Reflorestamento',
+          },
+          {
+            temImagem: true,
+            tipo: 'Tipo de instituição',
+            Instituicao: 'Instituição Bom Prato',
+          },
+          {
+            temImagem: true,
+            tipo: 'Tipo de instituição',
+            Instituicao: 'Instituição XYZ',
+          },
+          {
+            temImagem: true,
+            tipo: 'Tipo de instituição',
+            Instituicao: 'Instituição Sabonete',
+          },
+          {
+            temImagem: true,
+            tipo: 'Tipo de instituição',
+            Instituicao: 'Instituição BK',
+          },
+          {
+            temImagem: true,
+            tipo: 'Tipo de instituição',
+            Instituicao: 'Instituição ZYX',
+          },
+          {
+            temImagem: true,
+            tipo: 'Tipo de instituição',
+            Instituicao: 'Instituição YXZ',
+          },
+      ],
+      search:""
+    };
+  },
   methods: {
     inst_home (){
       this.$router.push('./inst-home')
+    },
+  },
+  computed: {
+    filteredItem: function () {
+      var self = this;
+      return this.items.filter(function (item) {
+        return item.Instituicao.toLowerCase().indexOf(self.search.toLowerCase()) >= 0});
     }
   }
 }
-
 </script>
-<style>
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-</style>
