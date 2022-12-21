@@ -39,6 +39,9 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
 ]
 
+# Google Maps API Key
+GOOGLE_MAPS_SECRET_KEY = os.getenv('GOOGLE_MAPS_SECRET_KEY', '')
+
 # Application definition
 
 INSTALLED_APPS = [
