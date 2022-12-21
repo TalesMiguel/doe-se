@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from decouple import config
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -40,7 +41,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # Google Maps API Key
-GOOGLE_MAPS_SECRET_KEY = os.getenv('GOOGLE_MAPS_SECRET_KEY', '')
+GOOGLE_MAPS_SECRET_KEY = config('GOOGLE_MAPS_SECRET_KEY', default='')
 
 # Application definition
 
