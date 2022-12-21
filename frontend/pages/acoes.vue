@@ -14,7 +14,7 @@
                                     v-model="nome" label="Nome da Instituição" style="width:30vw" outlined filled background-color="#f6f6f6">
                                 </v-text-field>
 
-                                <v-select required :rules="[v => !!v || 'Item is required']" 
+                                <v-select required multiple chips deletable-chips :rules="[v => !!v || 'Item is required']" 
                                     v-model="tipo" :items="itens" label="Tipo" style="width:30vw" outlined filled background-color="#f6f6f6">
                                 </v-select>
 
@@ -24,9 +24,9 @@
                             </v-form>
                         </v-card-actions>
                         <v-row>
-                        <v-col md="12" class="d-flex justify-center">
-                        <v-btn @click="enviar" style="width:10vw"> Enviar </v-btn>
-                         </v-col>
+                            <v-col md="12" class="d-flex justify-center">
+                                <v-btn @click="enviar" style="width:10vw"> Enviar </v-btn>
+                            </v-col>
                         </v-row>
                         <v-row>
                             <v-col md="12" class="d-flex justify-center">
@@ -46,8 +46,7 @@
                                 <p>Nome da Instituição: {{ acao.nome }}
                                 <br><br>Tipo: {{ acao.tipo }}
                                 <br><br>Endereço: {{ acao.endereco }}
-                                <br><br>Lat: {{acao.lat}}
-                                <br><br>Lng: {{acao.lng}}</p>
+                                </p>
                                 <v-col style="width:5vw"></v-col>
                             </v-card-actions>
                             </v-container>
@@ -69,10 +68,9 @@ export default {
   methods: {
         enviar() {
             if(this.$refs.form.validate()){ 
-                this.loading = true
                 const formAcao = new FormData()
                 formAcao.append('nome', this.nome)
-                formAcao.append('tipo', this.tipo)
+                formAcao.append('tipo', '{' + this.tipo + '}')
                 formAcao.append('endereco', this.endereco)
                 this.$axios.post('add-acao/', formAcao)
                 .then(async (mens) => { this.$refs.form.reset(); this.pronto = true; 
@@ -83,9 +81,8 @@ export default {
         },
 
         get() {
-            this.loading = true
             this.$axios.get('get-acao/')
-                .then(async (mens) => { this.acoes = (mens.data.todos); })
+                .then(async (mens) => { this.acoes = (mens.data.todos); console.log(mens.data.todos)})
                 .catch(async (err) => { console.log("Erro " + err)} )
         }
   },
@@ -101,7 +98,7 @@ export default {
         ],
         pronto: false,
         falhou: false,
-        acoes: [],
+        acoes: null,
     }
   }
 }

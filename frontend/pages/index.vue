@@ -1,21 +1,23 @@
 <template>
     <v-main>
       <v-container fluid style="height: 250vh" class="mx-16 my-12">
-        <v-row class="ml-14 mt-8">
-          <v-col md="1"> </v-col>
-          <v-col md="7" align="center">
-            <div style="height: 8vh">
+        <v-row class="ml-16 mt-8">
+          <v-col md="6" align="center">
+            <div style="height: 6vh">
             <p style="font-size: 28px"> Encontre projetos sociais próximos a você!</p>
             </div>
-            <v-autocomplete
-              flat
-              label="Digite seu endereço"
-              filled
-              class="d-flex justify-end mb-6"
-            ></v-autocomplete>
           </v-col>
-          <v-col align-self="center" class="mb-6">
-            <v-btn rounded class="mx-6 mt-13" style="min-width:14vh" color="#c6535f" @click="buscar">
+          <v-col md="6"></v-col>
+        </v-row>
+        <v-row>
+          <v-col class="ml-16"> 
+            <v-form ref="form" v-on:submit.prevent="buscar">
+              <v-text-field v-model="endereco" required :rules="[v => !!v || '']" flat label="Digite seu endereço" filled >
+              </v-text-field>
+            </v-form>
+          </v-col>
+          <v-col class="d-flex" align-self="end">
+            <v-btn rounded class="mx-6 mb-9" style="min-width:14vh" color="#c6535f" @click="buscar">
               <div style="color:#f4f4f4;font-size:13px"> Buscar </div> </v-btn> 
           </v-col>
         </v-row>
@@ -36,9 +38,9 @@
                   Faça sua doação
               </h1> </v-card-title>
               <v-card-actions class="justify-center">
-                <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6" @click="explorar">
+                <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6">
                   <div style="font-size:13px;color:#f4f4f4">
-                    Explorar
+                    Doação Única
                   </div>
                 </v-btn>
               </v-card-actions>
@@ -59,7 +61,7 @@
             </v-card>
           </v-col>
         </v-row>
-
+        
         <v-divider style="max-width: 92vw"> </v-divider>
 
         <v-row class="ma-10" style="height:75vh">
@@ -167,6 +169,11 @@
 export default {
   name: 'IndexPage',
   layout: 'navbar',
+  data () {
+    return {
+      endereco: null
+    }
+  },
   methods: {
     entrar () {
       this.$router.push('./login-usuario')
@@ -175,7 +182,9 @@ export default {
       this.$router.push('./cadastro-usuario')
     },
     buscar () {
-      this.$router.push('./mapa')
+      if(this.$refs.form.validate()){
+        this.$router.push({path: './mapa', query : { endereco: this.endereco}});
+      }
     },
     explorar () {
       this.$router.push('./explorar')

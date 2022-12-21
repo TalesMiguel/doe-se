@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+from djgeojson.fields import PointField
 from django.db import models
-# Create your models here.
 
 class User(models.Model):
     nome = models.CharField(max_length=50)
@@ -30,19 +30,15 @@ class Instituicoes(models.Model):
         return self.nome
 
 class Acoes(models.Model):
-    #instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=256)
     tipo = ArrayField(models.CharField(max_length=32), size = 3)
-    endereco = models.CharField(max_length=128)
-    dataInicio = models.DateField()
-    #dataTermino = models.DateTimeField()
-    concluido = models.BooleanField(default=False)
-    lat = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
-    lng = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
+    endereco = models.CharField(max_length=256)
+    geom = PointField()
 
     def to_dict_json(self):
         return {
-            'tipo': self.tipo[0],
+            'nome': self.nome,
+            'tipo': self.tipo,
             'endereco': self.endereco,
-            'lat': self.lat,
-            'lng': self.lng,
+            'geom': self.geom,
         }
