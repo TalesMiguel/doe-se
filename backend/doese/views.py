@@ -10,22 +10,18 @@ import instituicao_svc
 import acao_svc
 
 import geocoder
+from .service import geocoder_svc, geojson_serializer_svc, acao_svc
+
 
 @csrf_exempt
 def add_acao(request):
-    if request.method == "POST":
-        g = geocoder.osm(request.POST['endereco'])
-        data = datetime.datetime(2022, 12, 5, 11, 11)
-        #data_inicio=data, data_fim=data
-        l1 = g.lat
-        l2 = g.lng
-        acao = Acoes(tipo=request.POST['tipo'], dataInicio=data, endereco=request.POST['endereco'], concluido=False, lat=l1, lng=l2)
-        acao.save()
-        res = acao.to_dict_json()
-        return JsonResponse(res) 
+    return JsonResponse(acao_svc.add_acao(request)) 
 
-    else:
-        return HttpResponse("falhou")
+
+def get_acao(request):
+    response = Acoes.objects.all()
+    acoes = [acao.to_dict_json() for acao in acoes]
+    return JsonResponse({'acoes': acoes})
 
 
 def create_instituicao(request):
@@ -72,3 +68,13 @@ def delete_acao(request):
     acao = json.loads(request.POST.get("acao"))
     acao_svc.delete_acao(acao)
     return JsonResponse({}, safe=False)
+
+
+def get_geojson(request):
+    return HttpResponse(geojson_serializer_svc.serialize(), content_type='application/geo+json')
+
+
+@csrf_exempt
+def get_coord(request):
+    coord = geocoder_svc.converter(request.POST['endereco'])
+    return JsonResponse([coord[0], coord[1]], safe=False)
