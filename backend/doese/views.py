@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Acoes
 
 import instituicao_svc
+import acao_svc
 
 import geocoder
 
@@ -47,4 +48,27 @@ def update_instituicao(request):
 def delete_instituicao(request):
     instituicao = json.loads(request.POST.get("instituicao"))
     instituicao_svc.delete_instituicao(instituicao)
+    return JsonResponse({}, safe=False)
+
+
+def create_acao(request):
+    acao = json.loads(request.POST.get("acao"))
+    acao_svc.create_acao(acao)
+    return JsonResponse({})
+
+
+def list_acao(request):
+    acoes = acao_svc.list_all_acoes()
+    return JsonResponse([inst.to_dict_json() for inst in acoes], safe=False)
+
+
+def update_acao(request):
+    acao = json.loads(request.POST.get("acao"))
+    acao_svc.update_acao(acao)
+    return JsonResponse({})
+
+
+def delete_acao(request):
+    acao = json.loads(request.POST.get("acao"))
+    acao_svc.delete_acao(acao)
     return JsonResponse({}, safe=False)
