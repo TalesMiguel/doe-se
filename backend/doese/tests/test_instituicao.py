@@ -1,4 +1,3 @@
-from ..models import Instituicoes
 import instituicao_svc
 
 from model_bakery import baker
