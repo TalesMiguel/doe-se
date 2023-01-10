@@ -19,7 +19,9 @@ class Historico(models.Model):
     valor = models.IntegerField
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
 class Instituicoes(models.Model):
+    key = models.CharField(max_length=256, unique=True)
     nome = models.CharField(max_length=256)
     CNPJ = models.CharField(max_length=32)
     telefone = models.CharField(max_length=32)
@@ -29,8 +31,10 @@ class Instituicoes(models.Model):
     def __str__(self):
         return self.nome
 
+
 class Acoes(models.Model):
     #instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
+    key = models.CharField(max_length=256, unique=True)
     tipo = ArrayField(models.CharField(max_length=32), size = 3)
     endereco = models.CharField(max_length=128)
     dataInicio = models.DateField()
