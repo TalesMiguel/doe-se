@@ -1,10 +1,13 @@
 import json
+import datetime
 
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
 from .models import Acoes
-import datetime
+
+import instituicao_svc
+
 import geocoder
 
 @csrf_exempt
@@ -23,3 +26,25 @@ def add_acao(request):
     else:
         return HttpResponse("falhou")
 
+
+def create_instituicao(request):
+    instituicao = json.loads(request.POST.get("instituicao"))
+    instituicao_svc.create_instituicao(instituicao)
+    return JsonResponse({})
+
+
+def list_instituicao(request):
+    instituicoes = instituicao_svc.list_all_instituicoes()
+    return JsonResponse([inst.to_dict_json() for inst in instituicoes], safe=False)
+
+
+def update_instituicao(request):
+    instituicao = json.loads(request.POST.get("instituicao"))
+    instituicao_svc.update_instituicao(instituicao)
+    return JsonResponse({})
+
+
+def delete_instituicao(request):
+    instituicao = json.loads(request.POST.get("instituicao"))
+    instituicao_svc.delete_instituicao(instituicao)
+    return JsonResponse({}, safe=False)
