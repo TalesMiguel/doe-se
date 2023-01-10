@@ -1,3 +1,4 @@
+from ..models import Acoes
 import acao_svc
 
 from model_bakery import baker
