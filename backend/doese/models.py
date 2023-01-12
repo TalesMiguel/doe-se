@@ -34,6 +34,7 @@ class Instituicoes(models.Model):
 
 class Acoes(models.Model):
     #instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
+    key = models.CharField(max_length=256, unique=True)
     tipo = ArrayField(models.CharField(max_length=32), size = 3)
     endereco = models.CharField(max_length=128)
     dataInicio = models.DateField()
