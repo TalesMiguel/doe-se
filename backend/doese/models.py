@@ -30,14 +30,24 @@ class Instituicoes(models.Model):
         return self.nome
 
 class Acoes(models.Model):
+    key = models.CharField(max_length=256, unique=True)
+    instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE)
     nome = models.CharField(max_length=256)
     tipo = ArrayField(models.CharField(max_length=32), size = 3)
     endereco = models.CharField(max_length=256)
     geom = PointField()
+    Inicio = models.DateField()
+    dataTermino = models.DateTimeField()
+    concluido = models.BooleanField(default=False)
 
     def to_dict_json(self):
         return {
             'nome': self.nome,
+            'instituicao': self.instituicao,
+            'key': self.key,
+            'inicio':self.Inicio,
+            'dataTermino':self.dataTermino,
+            'concluido':self.concluido,
             'tipo': self.tipo,
             'endereco': self.endereco,
             'geom': self.geom,
