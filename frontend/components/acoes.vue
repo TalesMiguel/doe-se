@@ -53,16 +53,23 @@
                     <v-container>
                         <v-card-title class="d-flex justify-center"> Ações criadas </v-card-title>
                         <v-container fluid style="height:50vh" class="d-flex align-center justify-center">
-                        <v-card-actions v-for="(acao,i) in acoes" :key="i" class="d-flex align-center justify-center my-6">
-                            <v-card flat style="width:30vw;height:30vh" color="#bbbbbb" class="d-flex justify-center">
-                            <h3> {{ acao.nome }} </h3>
-                            <p>
-                            <br><br>Tipo: {{ acao.tipo }}
-                            <br><br>Endereço: {{ acao.endereco }}
-                            </p>
-                            </v-card>
-                            <v-col style="width:5vw"></v-col>
-                        </v-card-actions>
+                          <v-virtual-scroll v-if="acoes != null" :items="acoes" item-height="64">
+                            <template v-slot:default="{ item }">
+                              <v-list-item :key="item">
+                                <v-list-item-content>
+                                  <v-list-item-title>
+                                    <strong>{{ item.nome }}</strong>
+                                  </v-list-item-title>
+                                  {{item.endereco}}, {{item.inicio}}
+                                </v-list-item-content>
+                                <v-list-item-action>
+                                  <v-icon small>
+                                    mdi-close
+                                  </v-icon>
+                                </v-list-item-action>
+                              </v-list-item>
+                            </template>
+                          </v-virtual-scroll>
                         </v-container>
                     </v-container>
                 </v-card>
