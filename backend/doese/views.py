@@ -12,7 +12,7 @@ def add_acao(request):
 
 def get_acao(request):
     response = Acoes.objects.all()
-    acoes = [acao.to_dict_json() for acao in acoes]
+    acoes = [acao.to_dict_json() for acao in response]
     return JsonResponse({'acoes': acoes})
 
 def get_geojson(request):

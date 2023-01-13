@@ -2,7 +2,6 @@
   <div align="center">
   <v-row>
     <v-col class="my-7">
-      <avatarinst/>
     </v-col>
     <v-col>
       <v-card color="#c3c3c3" align="center" width="72vw">

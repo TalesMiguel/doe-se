@@ -15,9 +15,9 @@
             width="400"
           ><h2>Login</h2><div align="left">
             <v-container>
-              <v-text-field outlined filled label="E-mail">
+              <v-text-field required outlined filled label="E-mail" v-model="email">
               </v-text-field>
-              <v-text-field outlined filled label="Senha" type="password">
+              <v-text-field required outlined filled label="Senha" type="password" v-model="senha">
               </v-text-field>
             </v-container>
           </div>
@@ -27,6 +27,7 @@
              large
              color="#d8d5d5"
              class="mr-2 mb-2"
+             @click="login_inst"
            >Entrar</v-btn>
           </div>
           <div align="center">
@@ -57,9 +58,23 @@
 export default {
   name: 'Login-Instituicao',
   layout: "navbar",
+  data: () => ({
+    email: '',
+    senha: ''
+  }),
   methods: {
     cadastrar () {
       this.$router.push('./cadastro-instituicao')
+    },
+    login_inst () {
+
+      const Form = new FormData()
+
+      Form.append('username', this.email)
+      Form.append('senha', this.senha)
+
+      this.$axios.post('login-inst/', Form)
+
     }
   }
 }
