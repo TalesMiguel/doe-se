@@ -1,0 +1,41 @@
+### ORIGINAL
+### /etc/nginx/sites-available/core
+
+server {
+    listen 80;
+    server_name 34.168.119.132;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/talesmz/doe-se;
+    }
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+
+
+
+server {
+    listen 80;
+    server_name _;  # _ é um catch-all
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/talesmz/doe-se;
+    }
+    location /api {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+    location /admin {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://localhost:3000;
+    }
+}
