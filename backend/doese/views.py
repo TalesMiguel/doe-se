@@ -6,8 +6,8 @@ from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
 from .models import Acoes
 
-from service import instituicao_svc
-from service import acao_svc
+from .service import instituicao_svc
+from .service import acao_svc
 
 import geocoder
 from .service import geocoder_svc, geojson_serializer_svc, acao_svc

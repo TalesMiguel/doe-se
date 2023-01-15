@@ -1,5 +1,5 @@
 from models import Acoes
-from service import acao_svc
+from .service import acao_svc
 
 from model_bakery import baker
 import pytest
