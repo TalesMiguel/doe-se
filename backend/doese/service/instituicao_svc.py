@@ -1,4 +1,4 @@
-from .models import Instituicoes
+from ..models import Instituicoes
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.shortcuts import get_object_or_404
 
