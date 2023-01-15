@@ -1,23 +1,24 @@
 <template>
-    <div    align="center">
+<v-main>
+    <div align="center">
         <v-card
-            elevation="10"
             color="#F6E2E2"
             outlined
-            width="1400"
-            height="650"
+            width="90vw"
+            height="68vh"
         >
             <v-form
                 v-model="valid"
                 ref="formInst"
                 lazy-validation
+                class="ma-7"
             ><v-row>
                     <v-col>
                         <v-text-field
                             v-model="cnpj"
                             :counter="14"
                             :rules="cnpjRules"
-                            label="CNPJ próprio/mantedouro"
+                            label="CNPJ"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -52,7 +53,7 @@
                         <v-text-field
                             v-model="numero"
                             :rules="numeroRules"
-                            label="numero"
+                            label="Número"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -114,7 +115,7 @@
                         <v-text-field
                             v-model="nomeFantasia"
                             :rules="nomeFantasiaRules"
-                            label="Nome fatasia"
+                            label="Nome fantasia"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -124,7 +125,7 @@
                         <v-text-field
                             v-model="telefoneRep"
                             :rules="telefoneRepRules"
-                            label="Telefone do Representante"
+                            label="Telefone do representante"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -132,7 +133,7 @@
                         <v-text-field
                             v-model="emailInst"
                             :rules="emailInstRules"
-                            label="e-mail institucional"
+                            label="E-mail institucional"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -140,7 +141,7 @@
                         <v-text-field
                             v-model="emailRep"
                             :rules="emailRepRules"
-                            label="e-mail do Representante"
+                            label="E-mail do representante"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -165,15 +166,20 @@
                         ></v-text-field>
                     </v-col>
                 </v-row>
-                <div align="right"><v-btn
+                <v-row align="right">
+                    <v-col>
+                <v-btn
                     :disabled="!valid"
-                    color="black"
+                    color="#d3d3d3"
                     class="mr-4"
                     @click="validate"
-                >Atualizar dados</v-btn></div>
+                >Atualizar dados</v-btn>
+                    </v-col>
+                </v-row>
             </v-form>
         </v-card>
     </div>
+</v-main>
 </template>
 <script>
 export default {

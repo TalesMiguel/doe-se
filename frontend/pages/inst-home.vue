@@ -1,22 +1,20 @@
 <template>
-  <v-container fluid class="my-16">
+  <v-container class="mt-16">
+    <v-row style="height: 10vh"> <v-col class="ma-5"> <h1> {{instname}} </h1> </v-col></v-row>
+    <v-row>
     <v-card flat>
-      <v-img class="text aling-end" :src="image3" max-height="15vh">
-        <h1 align="left" style="color:#F08080">{{instname}}</h1>
-        <div align="center">
-          <v-toolbar color="#d3d3d3" flat width="60vw" height="60vh">
+          <v-toolbar color="#d3d3d3" flat width="92vw" height="60vh">
             <v-tabs
               background-color="#d3d3d3"
-              v-model="opcoes_inst" fixed-tabs slider-color="#FF5757"
+              v-model="opcoes_inst" grow slider-color="#FF5757"
             >
-              <v-tab v-for="opcao in opcoes" :key="opcao" style="color: #000">
+              <v-tab v-for="opcao in opcoes" :key="opcao" style="color: black">
                 {{ opcao }}
               </v-tab>
             </v-tabs>
           </v-toolbar>
-        </div>
-      </v-img>
     </v-card>
+    </v-row>
     <v-tabs-items v-model="opcoes_inst" id="tab-item-custom" class="my-4">
       <v-tab-item>
         <v-row>
@@ -24,16 +22,13 @@
             <avatarinst/>
           </v-col>
           <v-col>
-            <v-card flat width="72vw" color="#d3d3d3" tile>
+            <v-card flat width="92vw" color="#d3d3d3" tile>
             </v-card>
           </v-col>
         </v-row>
       </v-tab-item>
       <v-tab-item>
         <fixacadastroinst/>
-      </v-tab-item>
-      <v-tab-item>
-        <novapublicacao/>
       </v-tab-item>
       <v-tab-item>
         <novaacao/>
@@ -45,8 +40,7 @@
 <script>
 import avatarinst from '../components/avatar-inst.vue'
 import fixacadastroinst from '../components/tab-dados.vue'
-import novapublicacao from '../components/tab-nova-publicacao.vue'
-import novaacao from '../components/tab-nova-acao.vue'
+import novaacao from '../components/acoes.vue'
 
 export default {
   name: 'inst-home',
@@ -54,15 +48,14 @@ export default {
   components: {
     avatarinst,
     fixacadastroinst,
-    novapublicacao,
     novaacao
   },
   data: function () {
     return {
-      instname: 'place holder',
+      instname: 'Nome',
       opcoes_inst: null,
       image3: require('../assets/imagem-3.jpg'),
-      opcoes: ['publicações', 'dados cadastrais', 'nova publicação', 'nova ação', 'notificações', 'ajuda']
+      opcoes: ['atividades', 'dados cadastrais', 'ações', 'notificações']
     }
   }
 }
