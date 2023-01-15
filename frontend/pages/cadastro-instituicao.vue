@@ -110,14 +110,6 @@
                             required>
                         ></v-text-field>
                     </v-col>
-                    <v-col>
-                        <v-text-field
-                            v-model="nomeFantasia"
-                            :rules="nomeFantasiaRules"
-                            label="Nome fatasia"
-                            required>
-                        ></v-text-field>
-                    </v-col>
                 </v-row>
                 <v-row>
                     <v-col>
@@ -234,7 +226,6 @@ export default {
     nomeInstRules: [
       v => !!v || 'Nome obirgatório'
     ],
-    nomeFantasia: '',
     telefoneRep: '',
     telefoneRepRules: [
       v => !!v || 'Telefone obrigatório',
