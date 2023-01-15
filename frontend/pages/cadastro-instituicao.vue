@@ -122,17 +122,9 @@
                     </v-col>
                     <v-col>
                         <v-text-field
-                            v-model="emailInst"
-                            :rules="emailInstRules"
+                            v-model="emai"
+                            :rules="email"
                             label="e-mail institucional"
-                            required>
-                        ></v-text-field>
-                    </v-col>
-                    <v-col>
-                        <v-text-field
-                            v-model="emailRep"
-                            :rules="emailRepRules"
-                            label="e-mail do Representante"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -231,13 +223,8 @@ export default {
       v => !!v || 'Telefone obrigatório',
       v => ((/(11|12|21)[0-9]{8}/.test(v) && v.length === 10) || (/(11|12|21)9[0-9]{8}/.test(v) && v.length === 11)) || 'Telefone invalido'
     ],
-    emailInst: '',
-    emailInstRules: [
-      v => !!v || 'e-mail obrigatório',
-      v => /.+@.+\..+/.test(v) || 'e-mail invalido'
-    ],
-    emailRep: '',
-    emailRepRules: [
+    email: '',
+    email: [
       v => !!v || 'e-mail obrigatório',
       v => /.+@.+\..+/.test(v) || 'e-mail invalido'
     ],
@@ -256,7 +243,34 @@ export default {
   methods: {
     validate () {
       if (this.$refs.formInst.validate()) {
-        this.$router.push('./UserLogin')
+        this.$router.push('./login-usuario')
+      }
+    },
+    formBuilder () {
+        const newForm = new FormData()
+        newForm.append('cnpj', this.cnpj)
+        newForm.append('nomeRepresentante', this.nomeRepresentante)
+        newForm.append('tipo', this.tipeInst)
+        newForm.append('rua', this.rua)
+        newForm.append('numero', this.numero)
+        newForm.append('bairro', this.bairro)
+        newForm.append('cidade', this.cidade)
+        newForm.append('uf', this.uf)
+        newForm.append('cep', this.cep)
+        newForm.append('nomeInst', this.nomeInst)
+        newForm.append('telefone', this.telefoneRep)
+        newForm.append('emailInst', this.emailInst)
+        return newForm
+    },
+    cadastrarinst () {
+      if (this.$refs.formInst.validate() && this.senhaInst == this.confirmaInst) {
+        const formDeCadastroInst = this.formBuilder ()
+        this.$axios.post('add-inst/', formDeCadastroInst)
+        this.$router.push('login-instituicao')
+      } else if(this.senhaInst == this.confirmaInst){
+          window.alert("senhas diferentes")
+      } else {
+          window.alert("algo deu errado")
       }
     }
   }

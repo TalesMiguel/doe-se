@@ -261,7 +261,7 @@ export default {
   methods: {
     validate () {
       if (this.$refs.formInst.validate()) {
-        this.$router.push('./UserLogin')
+        this.$router.push('./login-usuario')
       }
     }
   }
