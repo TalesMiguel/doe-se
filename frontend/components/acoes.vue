@@ -54,32 +54,6 @@
                   background-color="#f6f6f6"
                 />
 
-                <v-row>
-                  <v-col>
-                    <v-text-field
-                      v-model="inicio"
-                      required
-                      :rules="[v => !!v || 'Item is required']"
-                      label="Data de início"
-                      type="date"
-                      outlined
-                      filled
-                      background-color="#f6f6f6"
-                    />
-                  </v-col>
-                  <v-col>
-                    <v-text-field
-                      v-model="fim"
-                      required
-                      :rules="[v => !!v || 'Item is required']"
-                      label="Data de fim"
-                      type="date"
-                      outlined
-                      filled
-                      background-color="#f6f6f6"
-                    />
-                  </v-col>
-                </v-row>
               </v-form>
             </v-card-actions>
             <v-row>
@@ -150,7 +124,7 @@
                       <v-list-item-title>
                         <strong>{{ item.nome }}</strong>
                       </v-list-item-title>
-                      {{ item.endereco }}, {{ item.inicio }}
+                      {{ item.endereco }}, {{ item.tipo }}
                     </v-list-item-content>
                     <v-list-item-action>
                       <v-icon small>
@@ -199,30 +173,12 @@ export default {
         .then(async (mens) => { this.acoes = (mens.data.acoes); console.log(mens.data.acoes) })
         .catch(async (err) => { console.log('Erro ' + err) })
     },
-
-    converte () {
-      const s = this.inicio
-      const arr = s.split('-')
-      let novo = ''
-
-      let i = 0
-
-      for (i = 0; i < 2; i++) {
-        novo += arr[i] + '.'
-      }
-
-      novo += arr[2]
-
-      console.log(novo)
-    }
   },
   data () {
     return {
       nome: '',
       tipo: null,
       endereco: '',
-      inicio: '',
-      fim: '',
       itens: [
         'Roupa',
         'Comida',
