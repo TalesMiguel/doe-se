@@ -127,6 +127,7 @@
                         </h3>
                       </v-list-item-title>
                       Endereço: {{ item.endereco }}
+                      <br>
                       Tipo da Doação: {{ item.tipo }}
                     </v-list-item-content>
                     <v-list-item-action>
