@@ -127,9 +127,12 @@
                       {{ item.endereco }}, {{ item.tipo }}
                     </v-list-item-content>
                     <v-list-item-action>
-                      <v-icon small>
+                      <v-btn small
                         mdi-close
-                      </v-icon>
+                        color="red"
+                        @click="deletar(item)"
+                      >
+                      </v-btn>
                     </v-list-item-action>
                   </v-list-item>
                 </template>
@@ -157,6 +160,34 @@ export default {
         formAcao.append('tipo', '{' + this.tipo + '}')
         formAcao.append('endereco', this.endereco)
         this.$axios.post('add-acao/', formAcao)
+          .then(async () => {
+            this.$refs.form.reset(); this.pronto = true
+            await new Promise(r => setTimeout(r, 2000)); this.pronto = false
+          })
+          .catch(async () => {
+            this.$refs.form.reset(); this.falhou = true
+            await new Promise(r => setTimeout(r, 2000)); this.falhou = false
+          })
+      }
+    },
+
+    deletar (acao) {
+      if (this.$refs.form.validate()) {
+        this.$axios.post('delete-acao/', acao)
+          .then(async () => {
+            this.$refs.form.reset(); this.pronto = true
+            await new Promise(r => setTimeout(r, 2000)); this.pronto = false
+          })
+          .catch(async () => {
+            this.$refs.form.reset(); this.falhou = true
+            await new Promise(r => setTimeout(r, 2000)); this.falhou = false
+          })
+      }
+    },
+
+    editar (acao) {
+      if (this.$refs.form.validate()) {
+        this.$axios.post('edit-acao/', acao)
           .then(async () => {
             this.$refs.form.reset(); this.pronto = true
             await new Promise(r => setTimeout(r, 2000)); this.pronto = false
