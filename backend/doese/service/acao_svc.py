@@ -15,7 +15,7 @@ def list_all_acoes():
 
 def update_acao(acao):
     try:
-        inst = Acoes.objects.get(key=acao["key"])
+        inst = Acoes.objects.get(id=acao["id"])
     except ObjectDoesNotExist as e:
         raise ValidationError("A ação não existe.")
     
