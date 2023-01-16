@@ -16,13 +16,6 @@
   </v-row>
   <v-row class="mt-12" fluid>
     <v-col md=12>
-    <v-card flat width="92vw" height="80vh" color="#e9e9e9" tile align="center">
-      <v-card-text>
-        <v-col>
-        <h1> Publicações </h1>
-        </v-col>
-      </v-card-text>
-    </v-card>
     </v-col>
   </v-row>
 </v-main>

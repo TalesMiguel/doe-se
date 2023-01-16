@@ -55,7 +55,7 @@ export default {
       instname: 'Nome',
       opcoes_inst: null,
       image3: require('../assets/imagem-3.jpg'),
-      opcoes: ['atividades', 'dados cadastrais', 'ações', 'notificações']
+      opcoes: ['perfil', 'dados cadastrais', 'ações']
     }
   }
 }
