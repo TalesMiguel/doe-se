@@ -132,10 +132,11 @@
                     </v-list-item-content>
                     <v-list-item-action>
                       <v-btn small
+                        icon
                         mdi-close
                         color="red"
                         @click="deletar(item)"
-                      >
+                      > <v-icon>mdi-close</v-icon>
                       </v-btn>
                     </v-list-item-action>
                   </v-list-item>
