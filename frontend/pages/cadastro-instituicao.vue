@@ -4,8 +4,8 @@
             elevation="10"
             color="#F6E2E2"
             outlined
-            width="1400"
-            height="650"
+            width="80vw"
+            height="70vh"
         >
             <v-form
                 v-model="valid"
@@ -18,6 +18,9 @@
                             :counter="14"
                             :rules="cnpjRules"
                             label="CNPJ próprio/mantedouro"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -26,6 +29,9 @@
                             v-model="nomeRepresentante"
                             :rules="nomeRepresentanteRules"
                             label="Nome do representante"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -35,6 +41,9 @@
                             :items="tiposInst"
                             :rules="[v => !!v || 'Selecione o tipo']"
                             label="Tipo"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required
                             ></v-select>
                     </v-col>
@@ -45,6 +54,9 @@
                             v-model="rua"
                             :rules="ruaRules"
                             label="Rua"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -53,6 +65,9 @@
                             v-model="numero"
                             :rules="numeroRules"
                             label="numero"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -61,6 +76,9 @@
                             v-model="bairro"
                             :rules="bairroRules"
                             label="Bairro"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -71,6 +89,9 @@
                         v-model="cidade"
                         :rules="cidadeRules"
                         label="Cidade"
+                        outlined
+                        filled
+                        background-color="#f6f6f6"
                         required>
                     ></v-text-field>
                     </v-col>
@@ -80,6 +101,9 @@
                             :items="ufs"
                             :rules="[v => !!v || 'Selecione a UF']"
                             label="UF"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required
                         ></v-select>
                     </v-col>
@@ -88,25 +112,22 @@
                             v-model="cep"
                             :rules="cepRules"
                             label="CEP"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
                 </v-row>
                 <v-row>
                     <v-col>
-                    <v-select
-                        v-model="subTipo"
-                        :items="subTipos"
-                        :rules="[v => !!v || 'Selecione o subtipo']"
-                        label="Subtip"
-                        required
-                        ></v-select>
-                    </v-col>
-                    <v-col>
                         <v-text-field
                             v-model="nomeInst"
                             :rules="nomeInstRules"
                             label="Nome institucional"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -117,6 +138,9 @@
                             v-model="telefoneRep"
                             :rules="telefoneRepRules"
                             label="Telefone do Representante"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -125,6 +149,9 @@
                             v-model="emai"
                             :rules="email"
                             label="e-mail institucional"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -136,6 +163,9 @@
                             :rules="senhaInstRules"
                             label="Senha"
                             type="password"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -145,6 +175,9 @@
                             :rules="confirmaInstRules"
                             label="Confirmação"
                             type="password"
+                            outlined
+                            filled
+                            background-color="#f6f6f6"
                             required>
                         ></v-text-field>
                     </v-col>
@@ -209,10 +242,6 @@ export default {
     cepRules: [
       v => !!v || 'CEP obrigatório',
       v => (!/[^0-9]/.test(v) && v.length === 8) || 'CEP invalido'
-    ],
-    subTipo: 'n/a',
-    subTipos: [
-      'n/a'
     ],
     nomeInst: '',
     nomeInstRules: [
