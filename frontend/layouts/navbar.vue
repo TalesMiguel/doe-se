@@ -38,7 +38,7 @@
             Espaço para Instituições
           </v-btn>
 
-          <v-btn rounded color="#c6535f" class="my-8 mx-6" style="min-width:14vh" @click="dialog = true">
+          <v-btn rounded color="#c6535f" class="my-8 mx-6" style="min-width:14vh" @click="doar">
             <v-toolbar-title>
               <div style="color:#f4f4f4;font-size:9pt">
                 Quero Doar
@@ -99,6 +99,14 @@ export default {
         behavior: 'smooth'
       })
     },
+    doar () {
+      this.$router.push('./')
+      window.scrollTo({
+        top: 100,
+        left: 0,
+        behavior: 'smooth'
+      })
+    },
     entrar () {
       this.dialog = false
       this.$router.push('./login-usuario')
@@ -124,7 +132,7 @@ export default {
       this.$router.push('./cadastro-usuario')
     },
     loginInstituicao () {
-      this.$router.push('./login-instituicao')
+      this.$router.push('./inst-home')
     },
     explorar () {
       this.dialog = false
