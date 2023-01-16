@@ -172,31 +172,27 @@ export default {
     },
 
     deletar (acao) {
-      if (this.$refs.form.validate()) {
-        this.$axios.post('delete-acao/', acao)
-          .then(async () => {
-            this.$refs.form.reset(); this.pronto = true
-            await new Promise(r => setTimeout(r, 2000)); this.pronto = false
-          })
-          .catch(async () => {
-            this.$refs.form.reset(); this.falhou = true
-            await new Promise(r => setTimeout(r, 2000)); this.falhou = false
-          })
-      }
+      this.$axios.post('delete-acao/', acao)
+        .then(async () => {
+          this.$refs.form.reset(); this.pronto = true
+          await new Promise(r => setTimeout(r, 2000)); this.pronto = false
+        })
+        .catch(async () => {
+          this.$refs.form.reset(); this.falhou = true
+          await new Promise(r => setTimeout(r, 2000)); this.falhou = false
+        })
     },
 
     editar (acao) {
-      if (this.$refs.form.validate()) {
-        this.$axios.post('edit-acao/', acao)
-          .then(async () => {
-            this.$refs.form.reset(); this.pronto = true
-            await new Promise(r => setTimeout(r, 2000)); this.pronto = false
-          })
-          .catch(async () => {
-            this.$refs.form.reset(); this.falhou = true
-            await new Promise(r => setTimeout(r, 2000)); this.falhou = false
-          })
-      }
+      this.$axios.post('edit-acao/', acao)
+        .then(async () => {
+          this.$refs.form.reset(); this.pronto = true
+          await new Promise(r => setTimeout(r, 2000)); this.pronto = false
+        })
+        .catch(async () => {
+          this.$refs.form.reset(); this.falhou = true
+          await new Promise(r => setTimeout(r, 2000)); this.falhou = false
+        })
     },
 
     get () {
