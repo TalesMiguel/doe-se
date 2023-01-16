@@ -27,13 +27,13 @@ class Instituicoes(models.Model):
     email = models.EmailField(max_length=256)
     endereco = models.CharField(max_length=512)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    acoes = models.ForeignKey('doese.Acoes', on_delete=models.CASCADE, related_name='acao')
+    #acoes = models.ForeignKey('doese.Acoes', on_delete=models.CASCADE, related_name='acao')
     def __str__(self):
         return self.nome
 
 
 class Acoes(models.Model):
-    instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE, related_name='instituicao')
+    #instituicao = models.ForeignKey(Instituicoes, on_delete=models.CASCADE, related_name='instituicao')
     nome = models.CharField(max_length=256)
     tipo = ArrayField(models.CharField(max_length=32), size = 3)
     endereco = models.CharField(max_length=256)
