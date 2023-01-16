@@ -40,6 +40,7 @@ class Acoes(models.Model):
 
     def to_dict_json(self):
         return {
+            'id': self.id,
             'nome': self.nome,
             'tipo': self.tipo,
             'endereco': self.endereco,
