@@ -116,7 +116,7 @@
               <v-virtual-scroll
                 v-if="acoes != null"
                 :items="acoes"
-                item-height="64"
+                item-height="96"
               >
                 <template #default="{ item }">
                   <v-list-item :key="item">
