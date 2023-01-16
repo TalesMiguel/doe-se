@@ -57,13 +57,6 @@
             Faça sua doação
         </h1> </v-card-title>
         <v-card-actions class="justify-center">
-          <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6" @click="explorar">
-            <div style="font-size:13px;color:#f4f4f4">
-              Explorar
-            </div>
-          </v-btn>
-        </v-card-actions>
-        <v-card-actions class="justify-center">
           <v-btn color="#c6535f" style="min-width: 16vh" class="mb-6" @click="entrar">
             <div style="font-size:13px;color:#f4f4f4">
               Entrar
