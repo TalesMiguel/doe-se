@@ -2,11 +2,13 @@ import json
 
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .models import Acoes
 import datetime
 import geocoder
 
+@login_required
 @csrf_exempt
 def add_acao(request):
     if request.method == "POST":
