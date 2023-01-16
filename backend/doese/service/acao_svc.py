@@ -24,7 +24,7 @@ def update_acao(acao):
 
 
 def delete_acao(acao):
-    acao = get_object_or_404(Acoes, key=acao["key"])
+    acao = get_object_or_404(Acoes, id=acao["id"])
     acao.delete()
 
 
