@@ -173,22 +173,10 @@ export default {
             },
             options: {
                 filtro: [],
-                /*
-                pointToLayer: function pointToLayer(feature, latlng) {
-                    if(feature.properties.tipo.includes('Comida'))
-                    {
-                        return L.marker(latlng, {icon: L.icon({iconSize: [50, 50], iconUrl:""})})
-                    }
-                    if(feature.properties.tipo.includes('Roupa'))
-                    {
-                        return L.marker(latlng, {icon: L.icon({iconSize: [50, 50], iconUrl:""})})
-                    }
-                },
-                */
                 onEachFeature: function onEachFeature(feature, layer) {
-                    var texto = "<b>" + feature.properties.nome + "</b>" + "<br>" + feature.properties.tipo.toString() + "<br>" + feature.geometry.coordinates;
+                    var texto = "<b>" + feature.properties.nome + "</b>" + "<br>" + feature.properties.tipo.toString() + "<br>" + feature.properties.endereco;
                     layer.bindPopup(texto);
-                    //layer.bindTooltip(feature.properties.nome);
+                    layer.bindTooltip("<b>" + feature.properties.nome + "</b>");
                 },
 
                 filter: function(feature) {
