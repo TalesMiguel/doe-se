@@ -122,9 +122,12 @@
                   <v-list-item :key="item">
                     <v-list-item-content>
                       <v-list-item-title>
-                        <strong>{{ item.nome }}</strong>
+                        <h3>
+                          <strong>{{ item.nome }}</strong>
+                        </h3>
                       </v-list-item-title>
-                      {{ item.endereco }}, {{ item.tipo }}
+                      Endereço: {{ item.endereco }}
+                      Tipo da Doação: {{ item.tipo }}
                     </v-list-item-content>
                     <v-list-item-action>
                       <v-btn small
